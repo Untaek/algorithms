@@ -1,5 +1,4 @@
 #include <iostream>
-#include <algorithm>
 using namespace std;
 
 typedef struct t_max
@@ -18,39 +17,6 @@ Max create_max(int l, int h, int s)
   return max;
 }
 
-Max find_cross_max(int p[], int l, int h)
-{
-  int sum = 0;
-  int left_max = 0;
-  int right_max = 0;
-  int mid = (l + h) / 2;
-  int left = mid;
-  int right = mid + 1;
-
-  for (int i = mid; i > 0; i--)
-  {
-    sum += p[i];
-    if (left_max < sum)
-    {
-      left_max = sum;
-      left = i;
-    }
-  }
-
-  sum = 0;
-
-  for (int i = mid + 1; i < h; i++)
-  {
-    sum += p[i];
-    if (right_max < sum)
-    {
-      right_max = sum;
-      right = i;
-    }
-  }
-
-  return create_max(left, right, left_max + right_max);
-}
 Max find_max(int p[], int l, int h)
 {
   int current_max = 0;
