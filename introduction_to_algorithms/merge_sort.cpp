@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include "algos.hpp"
 
 using namespace std;
 void merge(int arr[], int l, int m, int h)
@@ -48,23 +49,7 @@ void merge_sort(int arr[], int l, int h)
   merge(arr, l, mid, h);
 }
 
-int main()
+void merge_sort(int arr[], int size)
 {
-  int arr[8] = {7, 5, 4, 9, 2, 3, 1, 6};
-
-  cout << "before ";
-  for (int i = 0; i < 8; i++)
-  {
-    cout << arr[i] << ", ";
-  }
-  cout << endl;
-
-  merge_sort(arr, 0, 7);
-
-  cout << "after ";
-  for (int i = 0; i < 8; i++)
-  {
-    cout << arr[i] << ", ";
-  }
-  cout << endl;
+  merge_sort(arr, 0, size - 1);
 }
