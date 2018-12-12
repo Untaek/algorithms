@@ -1,12 +1,10 @@
-#include <iostream>
 #include <algorithm>
 #include "algos.hpp"
 
-using namespace std;
 void merge(int arr[], int l, int m, int h)
 {
   int *temp = new int[h - l];
-  fill(temp, temp + h - l, 0);
+  std::fill(temp, temp + h - l, 0);
 
   int l_index = l;
   int h_index = m + 1;

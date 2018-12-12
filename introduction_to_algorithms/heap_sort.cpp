@@ -1,12 +1,4 @@
-#include <iostream>
-#include <algorithm>
-using namespace std;
-
-typedef struct heap
-{
-  int size;
-  int *data;
-} Heap;
+#include "algos.hpp"
 
 void init_heap(Heap &heap, int size)
 {
@@ -21,19 +13,22 @@ void clear_heap(Heap &heap)
 
 void put_heap_item(Heap &heap, int item)
 {
-  heap.data[heap.size + 1] = item;
-  for (int i = heap.size + 1; i > 1; i /= 2)
+  heap.size++;
+  heap.data[heap.size] = item;
+  int i;
+  for (i = heap.size; i > 1; i /= 2)
   {
-    if (heap.data[i / 2] < item)
+    if (heap.data[i] > heap.data[i / 2])
     {
       heap.data[i] = heap.data[i / 2];
     }
     else
     {
-      heap.data[i / 2] = item;
       break;
     }
   }
+  heap.data[i] = item;
+  int root = heap.data[1];
 }
 
 void build_max_heap(Heap &heap, int arr[], int size)
@@ -50,9 +45,10 @@ void heap_sort(int arr[], int size)
   init_heap(heap, size);
   build_max_heap(heap, arr, size);
 
-  for (int i = size; i > 0; i++)
+  for (int i = size; i > 0; i--)
   {
-    arr[i] = heap.data[i];
+    arr[size - i] = heap.data[i];
+    heap.size--;
   }
 
   clear_heap(heap);
